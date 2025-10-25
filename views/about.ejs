@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portfolio — 3D Hero</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes spin-slow {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+        .hero-3d {
+            width: 100%;
+            height: 520px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+            box-shadow: 0 8px 30px rgba(2,6,23,0.2);
+        }
+        @media (min-width: 1024px) {
+            .hero-3d { height: 620px; }
+        }
+        .no-webgl {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:100%;
+            color:#9ca3af;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-slate-100 antialiased">
+<header class="max-w-[1100px] mx-auto px-6 py-8 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+        <div>
+            <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+            <p class="text-sm text-slate-400">Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer</p>
+        </div>
+    </div>
+    <nav class="space-x-4 text-sm text-slate-300">
+        <a href="/" class="hover:text-white">Home</a>
+        <a href="/project" class="hover:text-white">Work</a>
+        <a href="/about" class="hover:text-white">About</a>
+        <a href="/contact" class="hover:text-white">Contact</a>
+        <a href="#" class="hover:text-white">Blog</a>
+    </nav>
+</header>
+
+<main class="max-w-[1100px] mx-auto px-6 pb-24">
+    <!-- Cards Container -->
+    <div class="flex flex-col lg:flex-row gap-8 items-start justify-center mt-16">
+
+        <!-- Left Card: Image -->
+        <div class="card relative group w-full lg:w-[45%] bg-slate-800 rounded-2xl overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl flex items-center justify-center">
+            <img src="https://i.postimg.cc/1tRH0QRd/156861078-944733483002165-6089950023219473953-n-3.jpg"
+                 alt="Profile"
+                 class="w-full h-full max-h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+
+        <!-- Right Card: Text -->
+        <div class="card relative group w-full lg:w-[55%] bg-slate-800 rounded-2xl p-8 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-400 group-hover:text-pink-400 transition-colors">About Me</h2>
+            <p class="text-slate-300 leading-relaxed">
+                With almost <b><i>4 years of experience</i></b> as a full-stack software developer, I excel in <i>designing, developing, testing and deploying scalable</i> web applications in cloud platforms like
+                <b><i>AWS</i></b>, <b><i>Heroku</i></b>, <b><i>Vercel</i></b>, <b><i>Render</i></b>, and <b><i>Railway</i></b>.
+                I have strong proficiency in <b><i>Spring Boot</i></b>, <b><i>Python</i></b>, <b><i>Node.js</i></b>, and <b><i>J2EE</i></b>, along with advanced front-end skills in
+                <b><i>HTML</i></b>, <b><i>CSS</i></b>, <b><i>JavaScript</i></b>, <b><i>Bootstrap</i></b>, and <b><i>Tailwind CSS</i></b>.
+                I am adept at creating <b><i>RESTful APIs</i></b>, <b><i>microservices</i></b>, and <b><i>responsive UI components</i></b>,
+                employing a data-driven approach to application design through analytics and real-world metrics for architecture and performance optimization.
+                My expertise encompasses both <b><i>relational</i></b> and <b><i>NoSQL</i></b> databases, specifically <b><i>MySQL</i></b>, <b><i>PostGres</i></b>, <b><i>Oracle</i></b>,
+                <b><i>MariaDB</i></b>, and <b><i>MongoDB</i></b>, as well as data visualization and reporting using <b><i>Tableau</i></b> and <b><i>Power BI</i></b>
+                to provide insights into business operations and user behavior. As a proactive problem-solver and collaborative team player,
+                I am dedicated to delivering clean, maintainable code and impactful features within <i>agile environments</i>, and I have experience
+                <i>mentoring</i> new team members in our organization. My goal is to design software that not only performs efficiently but also provides great user experiences.
+            </p>
+        </div>
+
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="mt-20 max-w-4xl mx-auto text-center">
+    <h2 class="text-2xl font-semibold text-indigo-400 mb-8">Education Details</h2>
+
+    <div class="relative overflow-hidden">
+        <!-- Carousel Wrapper -->
+        <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+            <!-- Card 1 -->
+            <div class="min-w-full flex flex-col items-center justify-center bg-slate-800 rounded-xl p-8 shadow-lg mx-2">
+                <h3 class="text-xl font-semibold mb-2">UnderGraduation: Class X and Class XII</h3>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>School Name: </strong><i>St. Augustine's Day School</i></p>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>Class X: </strong><i>2013</i></p>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>Class XII: </strong><i>2015</i></p>
+                <button data-modal="modal1" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="min-w-full flex flex-col items-center justify-center bg-slate-800 rounded-xl p-8 shadow-lg mx-2">
+                <h3 class="text-xl font-semibold mb-2">Graduation: Bachelor Of Science(Honours)</h3>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>College Name: </strong><i>St. Xavier's College, Kolkata</i></p>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>Timeline: </strong>2015-2018</p>
+                <button data-modal="modal2" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View Details</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="min-w-full flex flex-col items-center justify-center bg-slate-800 rounded-xl p-8 shadow-lg mx-2">
+                <h3 class="text-xl font-semibold mb-2">Post Graduation: Master Of Science</h3>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>College Name: </strong><i>Manipal Academy Of Higher Education</i></p>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>Timeline: </strong><i>2023-2024</i></p>
+                <button data-modal="modal3" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View Details</button>
+            </div>
+            <!-- Card 4 -->
+            <div class="min-w-full flex flex-col items-center justify-center bg-slate-800 rounded-xl p-8 shadow-lg mx-2">
+                <h3 class="text-xl font-semibold mb-2">Masters Of Business Administration(Online)</h3>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>College Name: </strong>Manipal University</p>
+                <p class="text-slate-400 mb-4 text-sm text-center"><strong>Timeline: </strong>2024-2026</p>
+                <button data-modal="modal4" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View Details</button>
+            </div>
+        </div>
+        <!-- Navigation Arrows -->
+        <button id="prev" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-indigo-500 hover:bg-pink-500 text-white rounded-full p-3 shadow-lg">
+            &#8592;
+        </button>
+        <button id="next" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-indigo-500 hover:bg-pink-500 text-white rounded-full p-3 shadow-lg">
+            &#8594;
+        </button>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="modal1" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Undergraduation: Class X and XII</h3>
+        <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
+        <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+            <li> Captain of the football team. Played in state level tournaments and won several champion trophies</li>
+            <li>Participated in state level science camps and science exhibitions and won trophies.</li>
+            <li>Built applications and robots in the science fair as a team.</li>
+            <li>Ranked in top 10 in the boards examination.</li>
+        </ul>
+        <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
+    </div>
+</div>
+
+<div id="modal2" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Graduation</h3>
+        <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
+        <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+            <li>Activities and societies: National Social Service, student council, NCC , football Team, guitarist and assistant vocalist in my band.</li>
+            <li>Developed a model in fortran in my 4th semester which could analyse any end result sample and tell the purity of the product with 99.5 % accuracy.</li>
+            <li>Developed a model in fortran in my 5th semester which could tell the hypothetical end result of the product yield when we enter the input parameters in the application like temperature, moisture, humidity, atmospheric pressure.</li>
+            <li>Developed a model in java( J2EE ) in my 6th semester which showed the possible/plausible starting components needed using the chemical formulae of a compound(retrosynthesis)</li>
+        </ul>
+        <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
+    </div>
+</div>
+
+<div id="modal3" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Post Graduation</h3>
+        <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
+        <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+            <li>Activities and societies: Was in cricket team of our section, Became runners-up in table tennis champion</li>
+            <li>Maintained and upgraded an existing application which was used in attendance management systems in our college using springboot framework</li>
+        </ul>
+        <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
+    </div>
+</div>
+<div id="modal4" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Masters Of Business Administration</h3>
+        <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
+        <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+            <li>Activities and societies: team lead and supervising a team of developers building scalable application for university fest.</li>
+            <li>Database Management, Software Engineering, Systems Analysis & Design</li>
+            <li>Led a team of enthusiastic developers and build and deployed an application for the university annual fest</li>
+            <li>Build a voice assistant generative AI in the final year project under the guidance of a Research Guide and submitted the thesis</li>
+        </ul>
+        <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
+    </div>
+</div>
+<!-- Work Experience -->
+<div class="mt-20 max-w-7xl mx-auto text-center px-4">
+    <h2 class="text-3xl font-semibold text-indigo-400 mb-8">Work Experience</h2>
+    <div class="flex flex-wrap justify-center gap-10">
+        <!-- Card 1 -->
+        <div class="group [perspective:1000px] w-80 h-96">
+            <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <!-- Front -->
+                <div class="absolute inset-0 bg-slate-800 rounded-xl shadow-xl p-6 text-slate-200 [backface-visibility:hidden] flex flex-col justify-center">
+                    <h2 class="text-xl font-semibold text-indigo-400 mb-2">Kotak Mahindra Bank</h2>
+                    <h5 class="text-sm text-indigo-300 italic">Feb 2022 - July 2022</h5>
+                    <p class="mt-4 text-lg font-semibold text-slate-100">Back Office Team Leader</p>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 bg-slate-900 rounded-xl shadow-xl p-6 text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto">
+                    <h3 class="text-lg font-semibold text-indigo-400 mb-2">Contributions & Achievements</h3>
+                    <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+                        <li>Led a team of 6 in supporting Java-based banking applications with 99% uptime.</li>
+                        <li>Coordinated system maintenance and enhancements, reducing customer complaint tickets
+                            by 15%.</li>
+                        <li>Developed an online KYC loan application portal.</li>
+                        <li>Coordinated feature updates and system deployments.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="group [perspective:1000px] w-80 h-96">
+            <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <!-- Front -->
+                <div class="absolute inset-0 bg-slate-800 rounded-xl shadow-xl p-6 text-slate-200 [backface-visibility:hidden] flex flex-col justify-center">
+                    <h2 class="text-xl font-semibold text-indigo-400 mb-2">Axis Bank Ltd</h2>
+                    <h5 class="text-sm text-indigo-300 italic">July 2022 - Jan 2023</h5>
+                    <p class="mt-4 text-lg font-semibold text-slate-100">Deputy Manager</p>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 bg-slate-900 rounded-xl shadow-xl p-6 text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto">
+                    <h3 class="text-lg font-semibold text-indigo-400 mb-2">Contributions & Achievements</h3>
+                    <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+                        <li>Developed and deployed Spring Boot microservices to handle core banking features,
+                            cutting system downtime by 20%.</li>
+                        <li>Developed , tested and deployed the Leave management system application for the
+                            organization.</li>
+                        <li>Developed an application which tracked any logistical and documentational status in the
+                            organization.</li>
+                        <li>Designed and implemented unit tests (JUnit, Mockito) achieving 85% code coverage
+                            across multiple applications.</li>
+                        <li>Streamlined feature update cycles by introducing Agile sprints, reducing release time
+                            from monthly to bi-weekly.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="group [perspective:1000px] w-80 h-96">
+            <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <!-- Front -->
+                <div class="absolute inset-0 bg-slate-800 rounded-xl shadow-xl p-6 text-slate-200 [backface-visibility:hidden] flex flex-col justify-center">
+                    <h2 class="text-xl font-semibold text-indigo-400 mb-2">ICICI Bank Ltd</h2>
+                    <h5 class="text-sm text-indigo-300 italic">Feb 2023 - Present</h5>
+                    <p class="mt-4 text-lg font-semibold text-slate-100">Deputy Manager</p>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 bg-slate-900 rounded-xl shadow-xl p-6 text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto">
+                    <h3 class="text-lg font-semibold text-indigo-400 mb-2">Contributions & Achievements</h3>
+                    <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
+                        <li>Automated account-opening workflows using Java-based applications, reducing
+                            processing time by 30%.</li>
+                        <li>Resolved 95% of application errors within SLA by implementing monitoring tools and
+                            optimizing backend services.</li>
+                        <li>Collaborated with IT teams to migrate legacy workflows to Spring Boot microservices,
+                            improving system uptime to 99.8%.</li>
+                        <li>Developed and Integrated voice assistant AI in customer care services.
+                        </li>
+                        <li>Mentored 5+ new joinees on hands on training and workflow activities.
+                        </li>
+                        <li>Managing compliance, internal audit in the office and end-to-end processes, data quality
+                            analysis of account information.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="text-center text-sm text-slate-500 py-8">© <span id="year"></span> Suman Talukdar | Portfolio @2025</footer>
+<!-- jQuery Carousel Script -->
+<script>
+    $(document).ready(function() {
+        let currentIndex = 0;
+        const totalCards = $('#carousel > div').length;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            $('#carousel').css('transform', `translateX(${offset}%)`);
+        }
+
+        $('#next').click(function() {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateCarousel();
+        });
+
+        $('#prev').click(function() {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateCarousel();
+        });
+
+        // Modal open
+        $('.openModal').click(function() {
+            const modalId = $(this).data('modal');
+            $('#' + modalId).removeClass('hidden');
+        });
+
+        // Modal close
+        $('.closeModal').click(function() {
+            $(this).closest('.fixed').addClass('hidden');
+        });
+
+        // Close modal on background click
+        $('.fixed').click(function(e) {
+            if ($(e.target).is('.fixed')) {
+                $(this).addClass('hidden');
+            }
+        });
+    });
+</script>
+<script>
+    // Update footer year dynamically
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

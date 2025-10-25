@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — 3D Hero</title>
+  <!-- Tailwind CDN (Play) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small custom styles to help the 3D canvas fit nicely */
+    .hero-3d {
+      width: 100%;
+      height: 520px; /* default height */
+      border-radius: 1rem;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+      box-shadow: 0 8px 30px rgba(2,6,23,0.2);
+    }
+    @media (min-width: 1024px) {
+      .hero-3d { height: 620px; }
+    }
+    /* fallback for no-webgl */
+    .no-webgl {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      color:#9ca3af;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-slate-100 antialiased">
+<header class="max-w-[1100px] mx-auto px-6 py-8 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+    <div>
+      <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+      <p class="text-sm text-slate-400">Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer</p>
+    </div>
+  </div>
+  <nav class="space-x-4 text-sm text-slate-300">
+    <a href="/" class="hover:text-white">Home</a>
+    <a href="/project" class="hover:text-white">Work</a>
+    <a href="/about" class="hover:text-white">About</a>
+    <a href="/contact" class="hover:text-white">Contact</a>
+    <a href="#" class="hover:text-white">Blog</a>
+  </nav>
+</header>
+<main class="max-w-[1100px] mx-auto px-6 pb-24">
+  <!-- HERO with 3D animation at the beginning -->
+  <section class="grid gap-8 lg:grid-cols-2 items-center">
+    <div>
+      <h2 class="text-4xl lg:text-5xl font-extrabold leading-tight">Hi — I am a full stack application and AI developer</h2>
+      <div class="mt-6 flex gap-3">
+        <a href="/project" class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-lg shadow">See my work</a>
+        <a href="/contact" class="inline-block border border-slate-700 px-5 py-3 rounded-lg text-slate-200 hover:border-slate-500">Contact</a>
+      </div>
+    </div>
+    <!-- 3D container starts here -->
+    <div class="hero-3d" id="hero3d">
+      <!-- Canvas will be injected here by three.js -->
+      <div id="no-webgl" class="no-webgl" style="display:none;">WebGL is not available in your browser.</div>
+    </div>
+  </section>
+
+
+<footer class="text-center text-sm text-slate-500 py-8">© <span id="year"></span> Suman Talukdar| Portfolio @2025</footer>
+
+<!-- Three.js from CDN + simple 3D animation script -->
+<script src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+<script>
+  // write year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Basic three.js scene that injects into #hero3d
+  (function(){
+    const container = document.getElementById('hero3d');
+    const noWebglEl = document.getElementById('no-webgl');
+
+    // Check WebGL
+    try {
+      const canvasTest = document.createElement('canvas');
+      const gl = canvasTest.getContext('webgl') || canvasTest.getContext('experimental-webgl');
+      if (!gl) throw new Error('no webgl');
+    } catch(e){
+      noWebglEl.style.display = 'flex';
+      return;
+    }
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.domElement.style.display = 'block';
+    container.appendChild(renderer.domElement);
+
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 3.6);
+
+    // Lights
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+    scene.add(hemi);
+    const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+    dir.position.set(5, 10, 7.5);
+    scene.add(dir);
+
+    // Create a visually pleasing object: torus knot with gradient-like material
+    const geometry = new THREE.TorusKnotGeometry(0.7, 0.25, 256, 32);
+
+    // Shader material for subtle iridescent look
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0.0 },
+        uColorA: { value: new THREE.Color('#7c3aed') },
+        uColorB: { value: new THREE.Color('#06b6d4') }
+      },
+      vertexShader: `
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          void main(){
+            vUv = uv;
+            vNormal = normal;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+      fragmentShader: `
+          uniform float uTime;
+          uniform vec3 uColorA;
+          uniform vec3 uColorB;
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          void main(){
+            float fresnel = pow(1.0 - dot(normalize(vNormal), vec3(0.0,0.0,1.0)), 1.5);
+            float wave = 0.5 + 0.5 * sin(uTime + vUv.y * 10.0);
+            vec3 col = mix(uColorA, uColorB, wave * 0.7 + fresnel * 0.3);
+            gl_FragColor = vec4(col, 1.0);
+          }
+        `,
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.rotation.x = Math.PI * 0.12;
+    scene.add(mesh);
+
+    // Subtle environment: add a large soft sphere behind as glow (using Points)
+    const starsGeom = new THREE.SphereGeometry(6, 32, 32);
+    const starsMat = new THREE.MeshBasicMaterial({ color: 0x0b1220, side: THREE.BackSide, transparent: true, opacity: 0.35 });
+    const sky = new THREE.Mesh(starsGeom, starsMat);
+    scene.add(sky);
+
+    // Interaction state
+    const state = { mouseX: 0, mouseY: 0 };
+
+    function onPointerMove(e){
+      const rect = container.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      state.mouseX = x;
+      state.mouseY = y;
+    }
+    container.addEventListener('pointermove', onPointerMove);
+
+    // Resize handling
+    function resize(){
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize);
+
+    // Animation loop
+    const clock = new THREE.Clock();
+    function animate(){
+      const t = clock.getElapsedTime();
+      material.uniforms.uTime.value = t * 1.2;
+
+      // Rotate mesh with gentle easing towards mouse
+      const targetRotY = state.mouseX * 0.6;
+      const targetRotX = state.mouseY * 0.4;
+      mesh.rotation.y += (targetRotY - mesh.rotation.y) * 0.06;
+      mesh.rotation.x += (targetRotX - mesh.rotation.x) * 0.06;
+
+      // slow auto-rotation
+      mesh.rotation.y += 0.0025;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Clean up if needed (not used here but useful pattern)
+    // Expose resize so devs can trigger it manually
+    window._portfolio3D = { resize };
+
+  })();
+</script>
+</main>
+</body>
+</html>
