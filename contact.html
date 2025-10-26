@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes spin-slow {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+        .hero-3d {
+            width: 100%;
+            height: 520px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+            box-shadow: 0 8px 30px rgba(2,6,23,0.2);
+        }
+        @media (min-width: 1024px) {
+            .hero-3d { height: 620px; }
+        }
+        .no-webgl {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #9ca3af;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+		.flip-card {
+      perspective: 1000px;
+    }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .flip-front {
+      background-color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .flip-back {
+      background-color: #1e293b;
+      color: white;
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="max-w-[1100px] w-full mx-auto px-6 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+        <div>
+            <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+            <p class="text-sm text-slate-400">
+                Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer
+            </p>
+        </div>
+    </div>
+    <nav class="space-x-4 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="project.html" class="hover:text-white">Work</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white">Contact</a>
+        <a href="#" class="hover:text-white">Blog</a>
+    </nav>
+</header>
+<!-- Contact Info -->
+  <section class="text-center mb-10">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
+    <p class="text-lg text-gray-600">We’d love to hear from you!</p>
+    <div class="mt-4 space-y-2">
+      <p class="text-blue-600 font-semibold">Email: suman.talukdar53@gmail.com</p>
+      <p class="text-blue-600 font-semibold"> Phone: +91 9875441655</p>
+    </div>
+  </section>
+
+  <!-- 3D Flip Cards -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+    <!-- Card 1 -->
+    <div class="flip-card w-64 h-80 mx-auto">
+      <div class="flip-inner">
+        <div class="flip-front shadow-lg p-6">
+          <h2 class="text-xl font-semibold mb-3">Github</h2>
+          <p class="text-gray-500"></p>
+        </div>
+        <div class="flip-back shadow-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Click Me</h3>
+          <a href="https://github.com/jiraiyasuman" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Contact Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="flip-card w-64 h-80 mx-auto">
+      <div class="flip-inner">
+        <div class="flip-front shadow-lg p-6">
+          <h2 class="text-xl font-semibold mb-3">Linkedin</h2>
+          <p class="text-gray-500"></p>
+        </div>
+        <div class="flip-back shadow-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Click Me</h3>
+          <a href="https://www.linkedin.com/in/suman-talukdar-29b3352b6/" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">View Openings</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Example JS: animate cards on scroll
+    const cards = document.querySelectorAll('.flip-card');
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          card.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    });
+  </script>
+<footer class="text-center text-sm text-slate-500 py-8">© <span id="year"></span> Suman Talukdar| Portfolio @2025</footer>
+</body>
+</html>

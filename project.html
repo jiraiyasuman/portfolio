@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project</title>
+    <!-- Tailwind CDN (Play) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* small custom styles to help the 3D canvas fit nicely */
+        .hero-3d {
+            width: 100%;
+            height: 520px; /* default height */
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+            box-shadow: 0 8px 30px rgba(2,6,23,0.2);
+        }
+        @media (min-width: 1024px) {
+            .hero-3d { height: 620px; }
+        }
+        /* fallback for no-webgl */
+        .no-webgl {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:100%;
+            color:#9ca3af;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        .flip-card {
+            perspective: 1000px;
+            transition: all 0.8s ease;
+        }
+        .flip-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .flip-card:hover .flip-inner, .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            backface-visibility: hidden;
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+        /* Entrance Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            } }
+        /* Mobile click flip */
+        .flip-card:active .flip-inner {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-slate-100 antialiased">
+<header class="max-w-[1100px] mx-auto px-6 py-8 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+        <div>
+            <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+            <p class="text-sm text-slate-400">Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer</p>
+        </div>
+    </div>
+    <nav class="space-x-4 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="project.html" class="hover:text-white">Work</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white">Contact</a>
+        <a href="#" class="hover:text-white">Blog</a>
+    </nav>
+</header>
+<!-- Header -->
+<header class="text-center py-10 fade-up">
+    <h1 class="text-4xl font-bold text-indigo-400 mb-2">My Projects</h1>
+    <p class="text-slate-400"></p>
+</header> <!-- Cards Container -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-10 pb-20">
+    <!-- Card 1 -->
+    <div class="flip-card w-80 h-96 fade-up">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Expense Tracker</h2>
+                <p class="text-slate-300 text-center">A responsive web application which handles day to day expenses</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>SpringBoot Rest API</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Express.Js,Node.js</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>Mysql</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Redis Cache, Docker,Kubernetes</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="expense.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.2s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Online Rental Listings</h2>
+                <p class="text-slate-300 text-center">A responsive web application which allows the landlord to post for the rental postings and allows the tenants to book for the postings</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>SpringBoot Rest API,Spring Security, actuators, microservices architecture, distributed tracing with zipkin, observability and metrics with grafana and prometheus, config server with eureka and api gateway with spring cloud gateway and load balancing</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Express.Js,Node.js</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>Mysql</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Redis Cache, Docker,Kubernetes</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="rental.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Voice Assistant Generative AI: Pashupathastra AI</h2>
+                <p class="text-slate-300 text-center">A voice assistant generative AI which takes voice command and does the work. A GUI application which captures and stores real time log values and cmmand details in the databases</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Python and related libraries</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Python GUI</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>Mysql</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="ai.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Guljo: Educational Website</h2>
+                <p class="text-slate-300 text-center">A web application which serves as an online learning platform.</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot, MVC architecture, spring security,actuators, spring aop</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>thymeleaf, tailwind, javascript</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>Mysql</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="guljo.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Logistics Management System</h2>
+                <p class="text-slate-300 text-center">A web application which keeps tracks of the financial deliverables sent via courier</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot, MVC architecture, spring security,actuators, spring aop</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>thymeleaf, bootstrap, javascript,ajax, jquery</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>OracleDb</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="logistics.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Leave Management System</h2>
+                <p class="text-slate-300 text-center">A web application which allows the employees in an office to apply for leaves and their managers approves/disapproves the leaves</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot, MVC architecture, spring security,actuators, spring aop</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>thymeleaf, bootstrap, ajax, jquery, javascript</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>OracleDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="leave.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 7 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Online Ride Booking App</h2>
+                <p class="text-slate-300 text-center">A web application which allows the user to book online rides and the rider to accept them</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot REST API, MVC architecture, spring security,actuators, spring aop,role based login</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Express.Js,Node.Js,tailwind CSS, javascript</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>MysqlDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="ride.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 8 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Social Media App</h2>
+                <p class="text-slate-300 text-center">A social media web application which allows the user to post pictures like them, comment on them and share them</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot REST API, MVC architecture, spring security,actuators, spring aop,role based login</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>React.JS,tailwind CSS, javascript</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>MysqlDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="social.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 9 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Flappy Bird Game</h2>
+                <p class="text-slate-300 text-center">A GUI based application which allows the user to play the flappy bird game </p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Stack:</strong><i>java and java based gui application</i>
+                    </p>
+                </div>
+                <a href="chat.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 10 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Online Loan Kycs</h2>
+                <p class="text-slate-300 text-center">A web application which allows the user to do their online kyc for their loan applications</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot, MVC architecture, spring security,actuators, spring aop,role based login</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>thymeleaf,bootstrap, javascript, ajax,jquery</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Vendor:</strong><i>Zego Cloud Server</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>MysqlDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="loan.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 11 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Muj Online Fest</h2>
+                <p class="text-slate-300 text-center">A web application which is used for the online fest for the university</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot,microservices architecture, spring security,actuators, spring aop</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Express.JS,Node.Js ,bootstrap, javascript, ajax,jquery</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>MysqlDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                </div>
+                <a href="muj.html"
+                   class="mt-4 bg-indigo-500 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Card 12 -->
+    <div class="flip-card w-80 h-96 fade-up" style="animation-delay: 0.4s;">
+        <div class="flip-inner">
+            <!-- Front -->
+            <div class="flip-front bg-slate-800 shadow-lg flex flex-col items-center justify-center p-6">
+                <h2 class="text-xl font-semibold text-indigo-400 mb-2">Online Banking System</h2>
+                <p class="text-slate-300 text-center">A web application which is used for the online banking operations</p>
+            </div>
+            <!-- Back -->
+            <div class="flip-back bg-slate-900 shadow-lg flex flex-col items-center justify-between p-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-2">Project Stack</h3>
+                    <p class="text-slate-300 text-sm text-center">
+                        <strong>Backend Stack:</strong><i>Spring Boot,microservices architecture,secured API using OAUTH and Keycloak, spring security,actuators, spring aop, API gateway using spring cloud gateway,dynamic load balancing, config server using eureka server</i>
+                    </p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Frontend Stack:</strong><i>Express.JS,Node.Js ,bootstrap, javascript, ajax,jquery</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Database:</strong><i>MysqlDB</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Monitoring, Logging and Observability</strong><i>SL4J Logging,Grafana,Prometheus,Loki,Open Telementry</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>DevOps:</strong><i>Docker,Kubernetes,redis caching</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>CI/CD Pipeline:</strong><i>Jenkins</i></p>
+                    <p class="text-slate-300 text-sm text-center"><strong>Deployement:</strong><i>AWS</i></p>
+                    <p class="text-slate-300 text-sm text-center">Under development</p>
+				</div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="text-center text-sm text-slate-500 py-8">© <span id="year"></span> Suman Talukdar| Portfolio @2025</footer>
+</body>
+</html>
