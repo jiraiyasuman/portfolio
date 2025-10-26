@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Suman Talukdar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+    .blog-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center px-4">
+
+  <!-- HEADER -->
+  <header class="max-w-6xl w-full py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+      <div>
+        <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+        <p class="text-sm text-slate-400">Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer</p>
+      </div>
+    </div>
+    <nav class="space-x-4 text-sm text-slate-300">
+      <a href="index.html" class="hover:text-white">Home</a>
+      <a href="project.html" class="hover:text-white">Work</a>
+      <a href="about.html" class="hover:text-white">About</a>
+      <a href="contact.html" class="hover:text-white">Contact</a>
+      <a href="blog.html" class="hover:text-white font-semibold">Blog</a>
+    </nav>
+  </header>
+
+  <!-- BLOG SECTION -->
+  <section class="max-w-6xl w-full mb-20">
+    <h1 class="text-3xl font-bold text-center mb-10">My Blog Posts</h1>
+
+    <!-- BLOG GRID -->
+    <div id="blogContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Blogs will be dynamically inserted by JavaScript -->
+    </div>
+  </section>
+
+  <footer class="text-gray-400 text-sm mb-6 text-center">
+    © 2025 Suman Talukdar | Portfolio
+  </footer>
+
+  <script>
+    const blogs = [
+      {
+        title: "New Blog coming soon",
+        date: "New Blog coming soon",
+        description: "New Blog coming soon",
+        link: "New Blog coming soon"
+      }
+    ];
+
+    const container = document.getElementById('blogContainer');
+
+    blogs.forEach(blog => {
+      const blogCard = document.createElement('div');
+      blogCard.className = "blog-card bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-2xl flex flex-col justify-between";
+      blogCard.innerHTML = `
+        <div>
+          <h2 class="text-xl font-semibold mb-2">${blog.title}</h2>
+          <p class="text-sm text-slate-400 mb-4">${blog.date}</p>
+          <p class="text-gray-300 mb-4">${blog.description}</p>
+        </div>
+        <a href="${blog.link}" class="mt-auto text-blue-400 hover:text-blue-300 font-semibold">Read More →</a>
+      `;
+      container.appendChild(blogCard);
+    });
+  </script>
+  <footer class="text-gray-400 text-sm mb-6 text-center">
+    © 2025 Suman Talukdar | Portfolio
+  </footer>
+</body>
+</html>
