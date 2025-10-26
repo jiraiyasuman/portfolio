@@ -52,10 +52,34 @@
 </head>
 <body class="flex flex-col items-center min-h-screen px-4">
 
-  <header class="text-center mt-10">
+  <!-- HEADER -->
+  <header class="max-w-[1100px] mx-auto px-6 py-8 w-full">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Profile Info -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold">LP</div>
+        <div>
+          <h1 class="text-lg font-semibold">Suman Talukdar</h1>
+          <p class="text-sm text-slate-400">Full Stack Java Developer | Java | Spring Boot | Microservices | Cloud | AWS | AI developer</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="space-x-4 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="project.html" class="hover:text-white">Work</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white font-semibold">Contact</a>
+        <a href="#" class="hover:text-white">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTACT INFO -->
+  <section class="text-center mt-4">
     <h1 class="text-3xl font-bold mb-2">Contact Me</h1>
     <p class="text-gray-300 mb-4">I'd love to hear from you!</p>
-    <p class="text-lg">
+    <p class="text-lg mb-2">
       📧 <span class="font-semibold">Email:</span>
       <a href="mailto:suman.talukdar53@gmail.com" class="text-blue-400 hover:underline">suman.talukdar53@gmail.com</a>
     </p>
@@ -63,9 +87,10 @@
       📞 <span class="font-semibold">Phone:</span>
       <a href="tel:+919875441655" class="text-blue-400 hover:underline">+91 9875441655</a>
     </p>
-  </header>
+  </section>
 
-  <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12 mb-20 w-full max-w-6xl">
+  <!-- CONTACT CARDS -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-20 w-full max-w-6xl">
 
     <!-- GitHub Card -->
     <div class="card h-56">
@@ -97,7 +122,7 @@
       </div>
     </div>
 
-    <!-- Download Latest Resume Card -->
+    <!-- Resume Card -->
     <div class="card h-56">
       <div class="card-inner">
         <div class="card-front">
@@ -111,9 +136,10 @@
         </div>
       </div>
     </div>
+
   </section>
 
-  <footer class="text-gray-400 text-sm mb-6">
+  <footer class="text-gray-400 text-sm mb-6 text-center">
     © 2025 Suman Talukdar | Portfolio
   </footer>
 
@@ -121,29 +147,18 @@
     document.addEventListener("DOMContentLoaded", async () => {
       const localResumePath = "./resume/Suman-updated-resume.pdf";
       const githubResumePath = "https://raw.githubusercontent.com/jiraiyasuman/portfolio/main/resume/Suman-updated-resume.pdf";
-
       const resumeDirectLink = document.getElementById("resumeDirectLink");
-      const resumeDownloadBtn = document.getElementById("resumeDownloadBtn");
 
-      // Try local file first
       try {
         const response = await fetch(localResumePath);
         if (response.ok) {
           resumeDirectLink.href = localResumePath;
           resumeDirectLink.download = "Suman_Talukdar_Resume.pdf";
-        } else {
-          throw new Error("Local resume not found");
-        }
-      } catch (error) {
-        // Fallback to GitHub resume
+        } else throw new Error();
+      } catch {
         resumeDirectLink.href = githubResumePath;
         resumeDirectLink.download = "Suman_Talukdar_Resume.pdf";
       }
-
-      // Button click event
-      resumeDownloadBtn.addEventListener("click", () => {
-        resumeDirectLink.click();
-      });
     });
   </script>
 
