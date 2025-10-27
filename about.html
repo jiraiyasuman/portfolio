@@ -100,7 +100,7 @@
                 <p class="text-slate-400 mb-4 text-sm text-center"><strong>School Name: </strong><i>St. Augustine's Day School</i></p>
                 <p class="text-slate-400 mb-4 text-sm text-center"><strong>Class X: </strong><i>2013</i></p>
                 <p class="text-slate-400 mb-4 text-sm text-center"><strong>Class XII: </strong><i>2015</i></p>
-                <button data-modal="modal1" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View</button>
+                <button data-modal="modal1" class="openModal px-4 py-2 bg-indigo-500 hover:bg-pink-500 rounded-md text-white transition">View Details</button>
             </div>
 
             <!-- Card 2 -->
@@ -138,7 +138,7 @@
 
 <!-- Modals -->
 <div id="modal1" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+  <div class="bg-slate-800 rounded-xl p-8 w-[70vw] max-h-[90vh] overflow-y-auto text-center shadow-lg">
         <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Undergraduation: Class X and XII</h3>
         <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
         <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
@@ -147,12 +147,16 @@
             <li>Built applications and robots in the science fair as a team.</li>
             <li>Ranked in top 10 in the boards examination.</li>
         </ul>
+		<div class="flex justify-center items-start gap-4 mt-6 flex-wrap">
+		<img src="https://i.postimg.cc/Dw9XQn0X/SECONDARY.jpg" class="w-[48%] rounded-lg shadow-md" alt="Class X">
+		<img src="https://i.postimg.cc/gk6cVRhd/isc-marksheet-3.png" class="w-[48%] rounded-lg shadow-md" alt="Class XII">
+		</div>
         <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
     </div>
 </div>
 
 <div id="modal2" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+  <div class="bg-slate-800 rounded-xl p-8 w-[70vw] max-h-[90vh] overflow-y-auto text-center shadow-lg">
         <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Graduation</h3>
         <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
         <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
@@ -161,24 +165,32 @@
             <li>Developed a model in fortran in my 5th semester which could tell the hypothetical end result of the product yield when we enter the input parameters in the application like temperature, moisture, humidity, atmospheric pressure.</li>
             <li>Developed a model in java( J2EE ) in my 6th semester which showed the possible/plausible starting components needed using the chemical formulae of a compound(retrosynthesis)</li>
         </ul>
+		<div class="flex justify-center items-start gap-4 mt-6 flex-wrap">
+		<img src="https://i.postimg.cc/Znsc42cX/graduation-5.png" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		<img src="https://i.postimg.cc/pdBKP3Vf/PROVISIONAL-CERTIFICATE.jpg" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		</div>
         <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
     </div>
 </div>
 
 <div id="modal3" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
+  <div class="bg-slate-800 rounded-xl p-8 w-[70vw] max-h-[90vh] overflow-y-auto text-center shadow-lg">
         <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Post Graduation</h3>
         <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
         <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
             <li>Activities and societies: Was in cricket team of our section, Became runners-up in table tennis champion</li>
             <li>Maintained and upgraded an existing application which was used in attendance management systems in our college using springboot framework</li>
         </ul>
+		<div class="flex justify-center items-start gap-4 mt-6 flex-wrap">
+		<img src="https://i.postimg.cc/qv48Wk0Z/pgdbmarksheet.png" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		<img src="https://i.postimg.cc/9FVRQJSb/pgdbpass.png" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		</div>
         <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
     </div>
 </div>
 <div id="modal4" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-slate-800 rounded-xl p-8 w-96 text-center shadow-lg">
-        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Masters Of Business Administration</h3>
+  <div class="bg-slate-800 rounded-xl p-8 w-[70vw] max-h-[90vh] overflow-y-auto text-center shadow-lg">
+        <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Masters Of Business Administration (Online)</h3>
         <p class="text-slate-300 mb-6">Notable Contributions and Achievements</p>
         <ul class="list-disc list-inside space-y-2 text-left text-slate-300">
             <li>Activities and societies: team lead and supervising a team of developers building scalable application for university fest.</li>
@@ -186,6 +198,10 @@
             <li>Led a team of enthusiastic developers and build and deployed an application for the university annual fest</li>
             <li>Build a voice assistant generative AI in the final year project under the guidance of a Research Guide and submitted the thesis</li>
         </ul>
+		<div class="flex justify-center items-start gap-4 mt-6 flex-wrap">
+		<img src="https://i.postimg.cc/0jj4YpXw/sem1-mba.png" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		<img src="https://i.postimg.cc/LsS0Cd0Y/sem2-mba.png" class="w-[48%] rounded-lg shadow-md" alt="Slide 1">
+		</div>
         <button class="closeModal px-4 py-2 bg-pink-500 hover:bg-indigo-500 rounded-md text-white">Close</button>
     </div>
 </div>
