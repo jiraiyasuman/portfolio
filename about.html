@@ -147,7 +147,20 @@
         </button>
     </div>
 </div>
+<!-- Languages Known Section -->
+<section id="languages" class="py-16 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    
+    <h2 class="text-3xl font-bold text-indigo-400 mb-10">
+      Languages Known
+    </h2>
 
+    <div id="languageContainer" class="grid md:grid-cols-3 gap-6">
+      <!-- Cards will be inserted dynamically using JavaScript -->
+    </div>
+
+  </div>
+</section>
 <!-- Modals -->
 <div id="modal1" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
   <div class="bg-slate-800 rounded-xl p-8 w-[70vw] max-h-[90vh] overflow-y-auto text-center shadow-lg">
@@ -366,5 +379,29 @@
     // Update footer year dynamically
     document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+<script>
+  const languages = [
+    { name: "English", level: "Professional Proficiency" },
+    { name: "Hindi", level: "Professional proficiency" },
+    { name: "Japanese", level: "Beginner (N5 Level target)" },
+	{ name: "Bengali", level: "Native Proficiency"},
+	{name: "Punjabi", level: "Intermediate"}
+  ];
+
+  const container = document.getElementById("languageContainer");
+
+  languages.forEach(lang => {
+    const card = document.createElement("div");
+    card.className = "bg-slate-800 p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300";
+
+    card.innerHTML = `
+      <h3 class="text-xl font-semibold text-indigo-300 mb-2">${lang.name}</h3>
+      <p class="text-gray-300">${lang.level}</p>
+    `;
+
+    container.appendChild(card);
+  });
+</script>
+
 </body>
 </html>
